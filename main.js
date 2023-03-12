@@ -47,13 +47,9 @@ if (!ready) {
 }
 
 document.querySelector('#content').innerHTML = `
-  <div id="headers">
-    <p>
-      Your operating system is
-    </p>
-    <h1>
-      ${osString}
-    </h1>
+  <div id="header">
+    <p>Your operating system is:</p>
+    <h1>${osString}</h1>
     ${ ready ? `
     <h2 id="success">
       ${ready}
