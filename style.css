@@ -45,3 +45,11 @@ h1 {
   white-space: pre-wrap;
   font-family: monospace;
 }
+
+#success {
+  color: rgb(62, 254, 120);
+}
+
+#error {
+  color: rgb(255, 82, 82);
+}
