@@ -54,3 +54,31 @@ h1 {
 #error {
   color: rgb(255, 82, 82);
 }
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background-color: rgb(53, 53, 53);
+  text-align: center;
+}
+
+a {
+  color: #669;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}

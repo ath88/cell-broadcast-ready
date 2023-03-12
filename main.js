@@ -67,4 +67,10 @@ document.querySelector('#content').innerHTML = `
     <div id="qr"></div>
   </div>
   <div id="data">${JSON.stringify(result, null, 4)}</div>
+  <div id="footer">
+    <p>
+      Source: <a href="https://github.com/ath88/cell-broadcast-ready">github.com/ath88/cell-broadcast-ready</a><br>
+      Detection based on <a href="https://github.com/faisalman/ua-parser-js">ua-parser-js</a>.
+    </p>
+  </div>
 `
