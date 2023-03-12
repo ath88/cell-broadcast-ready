@@ -6,13 +6,11 @@ const parser = new UAParser();
 const result = parser.getResult();
 const os = result.os;
 
+// os.name = "Android";
+// os.version = "11";
+
 let osString = os.name;
 if (os.version) osString += ` ${os.version}`;
-
-QRCode.toDataURL('https://ath88.github.io/cell-broadcast-ready/')
-.then(url => {
-  document.querySelector('#qr').innerHTML = `<img src=${url}>`;
-});
 
 let ready;
 let error;
@@ -41,6 +39,11 @@ if (os.name === 'iOS') {
 
 if (!ready) {
   error = "Are you using a computer? Scan the QR code below with your mobile device to visit this page."
+
+  QRCode.toDataURL('https://ath88.github.io/cell-broadcast-ready/')
+  .then(url => {
+    document.querySelector('#qr').innerHTML = `<img src=${url}>`;
+  });
 }
 
 document.querySelector('#content').innerHTML = `
