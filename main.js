@@ -1,3 +1,4 @@
+import QRCode from 'qrcode'
 import UAParser from 'ua-parser-js';
 import './style.css'
 
@@ -8,6 +9,10 @@ const os = result.os;
 let osString = os.name;
 if (os.version) osString += ` ${os.version}`;
 
+QRCode.toDataURL('https://ath88.github.io/cell-broadcast-ready/')
+.then(url => {
+  document.querySelector('#qr').innerHTML = `<img src=${url}>`;
+});
 
 let ready;
 let error;
@@ -23,13 +28,19 @@ if (os.name === 'Android') {
 
 if (os.name === 'iOS') {
   const [major, minor] = os.version.split('.').map(Number);
-  ready = "You need to update your iPhone to the iOS 16 to be ready for cell broadcast."
-  if (major === 16) ready = "Your iPhone can soon be updated to be ready for cell broadcast."
-  if (minor >= 4) ready = "Your iPhone is ready for cell broadcast!"
+
+  ready = "You need at have least an iPhone 8 and update to iOS 16 to be ready for cell broadcast."
+
+  if (major == 16) {
+    ready = "Your iPhone can soon be updated to be ready for cell broadcast."
+    if (minor >= 4) ready = "Your iPhone is ready for cell broadcast!"
+  }
+
+  if (major > 16) ready = "Your iPhone is ready for cell broadcast!"
 }
 
 if (!ready) {
-  error = "Your device was not recognized. Are you using a computer? If so, visit this site with your mobile device."
+  error = "Are you using a computer? Scan the QR code below with your mobile device to visit this page."
 }
 
 document.querySelector('#content').innerHTML = `
@@ -46,12 +57,11 @@ document.querySelector('#content').innerHTML = `
     </h2>
     ` : ''}
     ${ error ? `
-    <h4 id="error">
+    <h3 id="error">
       ${error}
-    </h4>
+    </h3>
     ` : ''}
+    <div id="qr"></div>
   </div>
-  <div>
-    <div id="data">${JSON.stringify(result, null, 4)}</div>
-  </div>
+  <div id="data">${JSON.stringify(result, null, 4)}</div>
 `
